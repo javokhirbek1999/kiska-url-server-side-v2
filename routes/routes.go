@@ -10,4 +10,7 @@ func Routes(app *fiber.App) {
 
 	// Welcome
 	app.Get("/", controllers.Welcome)
+
+	// User
+	app.Post("/api/users", controllers.RegisterUser)
 }

@@ -5,8 +5,8 @@ import "time"
 type Core_user struct {
 	ID          uint      `gorm:"primaryKey"`
 	Email       string    `gorm:"unique"`
-	Username    string    `gorm:"unique column:user_name"`
-	Password    string    `gorm:"column:password"`
+	Username    string    `gorm:"column:user_name" gorm:"unique"`
+	Password    []byte    `gorm:"column:password"`
 	DateJoined  time.Time `gorm:"column:date_joined"`
 	DateUpdated time.Time `gorm:"column:date_updated"`
 	LastLogin   time.Time `gorm:"column:last_login"`
