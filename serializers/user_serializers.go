@@ -13,3 +13,7 @@ type UserSerializer struct {
 	IsActive    bool      `json:"is_active"`
 	IsSuperuser bool      `json:"is_superuser"`
 }
+
+type EmailConfirmationSerializer struct {
+	Token string `json:"token"`
+}
