@@ -3,7 +3,9 @@ package controllers
 import (
 	"core/database"
 	"core/models"
-	utils "core/utils/responseUtils"
+	utils "core/utils"
+	responseUtils "core/utils/responseUtils"
+	"fmt"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -64,7 +66,14 @@ func RegisterUser(c *fiber.Ctx) error {
 
 	database.Database.DB.Create(&user)
 
-	response := utils.ResponseUserRegister(&user)
+	message := fmt.Sprintf("User %v has been created successfully", user.Username)
+
+	if err := utils.SendMail(user.Email, message); err != nil {
+		c.SendStatus(400)
+		return c.JSON(err.Error())
+	}
+
+	response := responseUtils.ResponseUserRegister(&user)
 
 	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
 		"message": "User has been registered successfully",
