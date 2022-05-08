@@ -14,4 +14,7 @@ func Routes(app *fiber.App) {
 	// User
 	app.Post("/api/auth/users", controllers.RegisterUser)
 	app.Post("api/auth/confirm/:token", controllers.EmailConfirmation)
+	app.Post("api/auth/login", controllers.Login)
+	app.Get("api/auth/user", controllers.User)
+	app.Post("api/auth/logout", controllers.Logout)
 }
