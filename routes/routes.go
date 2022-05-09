@@ -17,4 +17,8 @@ func Routes(app *fiber.App) {
 	app.Post("api/auth/login", controllers.Login)
 	app.Get("api/auth/user", controllers.User)
 	app.Post("api/auth/logout", controllers.Logout)
+
+	// Urls
+	app.Post("api/urls/shorten", controllers.ShortenURL)
+	app.Get("/:urlHash", controllers.Redirect)
 }
